@@ -1,3 +1,8 @@
+# Quiz Game
+
+My implementation of Lambda School FSW15's Break Project using [this api](https://lambda-study-app.herokuapp.com/).
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
