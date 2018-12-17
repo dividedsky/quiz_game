@@ -1,0 +1,7 @@
+.main-nav {
+  position: fixed;
+  height: 5vh;
+  border: 1px solid blue;
+  width: 100%;
+  background: #888;
+}
