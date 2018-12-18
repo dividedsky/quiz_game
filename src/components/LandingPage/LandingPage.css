@@ -1,12 +1,7 @@
 .landing {
-  /*background-image: linear-gradient(*/
-  /*to right,*/
-  /*rgba(35, 20, 115, 0.3),*/
-  /*rgba(119, 112, 159, 0.18)*/
-  /*),*/
   background-image: linear-gradient(
       to right,
-      rgb(56, 0, 0),
+      rgb(56, 230, 190, 0.6),
       rgba(34, 181, 52, 0.28)
     ),
     url('../../img/bulb.svg');
