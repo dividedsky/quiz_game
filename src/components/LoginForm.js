@@ -18,6 +18,11 @@ class LoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     console.log(this.state);
+    if (this.state.username && this.state.password && this.state.email) {
+      localStorage.setItem('username', JSON.stringify(this.state.username));
+      localStorage.setItem('password', JSON.stringify(this.state.password));
+      localStorage.setItem('email', JSON.stringify(this.state.email));
+    }
   };
 
   makeInput = (name, type = name) => {
@@ -40,6 +45,7 @@ class LoginForm extends React.Component {
         className="login-form"
         onSubmit={this.handleSubmit}
         autoComplete="off">
+        <h3>Register to Play</h3>
         {this.makeInput('username', 'text')}
         {this.makeInput('password')}
         {this.makeInput('email')}
