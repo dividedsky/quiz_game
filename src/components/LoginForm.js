@@ -12,7 +12,6 @@ class LoginForm extends React.Component {
   }
 
   handleChange = e => {
-    console.log(e);
     this.setState({[e.target.name]: e.target.value});
   };
 
@@ -30,18 +29,24 @@ class LoginForm extends React.Component {
         value={this.state[name]}
         placeholder={name}
         onChange={this.handleChange}
+        autoComplete="off"
       />
     );
   };
 
   render() {
     return (
-      <form className="login-form" onSubmit={this.handleSubmit}>
+      <form
+        className="login-form"
+        onSubmit={this.handleSubmit}
+        autoComplete="off">
         {this.makeInput('username', 'text')}
         {this.makeInput('password')}
         {this.makeInput('email')}
         {this.makeInput('imageUrl', 'text')}
-        <button type="submit">Submit</button>
+        <button className="btn submit-btn" type="submit">
+          Submit
+        </button>
       </form>
     );
   }
