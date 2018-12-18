@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {registerUser} from '../store/actions';
 
 class LoginForm extends React.Component {
   constructor() {
@@ -104,4 +106,7 @@ class LoginForm extends React.Component {
   }
 }
 
-export default LoginForm;
+export default connect(
+  null,
+  {registerUser},
+)(LoginForm);
