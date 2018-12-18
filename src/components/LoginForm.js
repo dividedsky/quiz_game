@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {registerUser} from '../store/actions';
+import {registerUser, logInUser} from '../store/actions';
 
 class LoginForm extends React.Component {
   constructor() {
@@ -39,10 +39,14 @@ class LoginForm extends React.Component {
 
   handleSignIn = e => {
     e.preventDefault();
-    if (this.state.username && this.state.password) {
-      localStorage.setItem('username', JSON.stringify(this.state.username));
-      localStorage.setItem('password', JSON.stringify(this.state.password));
-      window.location.reload();
+    if (this.state.email && this.state.password) {
+      this.props.logInUser({
+        email: this.state.email,
+        password: this.state.password,
+      });
+      //localStorage.setItem('username', JSON.stringify(this.state.username));
+      //localStorage.setItem('password', JSON.stringify(this.state.password));
+      //window.location.reload();
     }
   };
 
@@ -99,7 +103,7 @@ class LoginForm extends React.Component {
           onSubmit={this.handleSignIn}
           autoComplete="off">
           <h3>{this.state.register ? 'Register' : 'Sign In'} to Play</h3>
-          {this.makeInput('username', 'text')}
+          {this.makeInput('email')}
           {this.makeInput('password')}
           <button className="btn submit-btn" type="submit">
             Submit
@@ -116,5 +120,5 @@ class LoginForm extends React.Component {
 
 export default connect(
   null,
-  {registerUser},
+  {registerUser, logInUser},
 )(LoginForm);
