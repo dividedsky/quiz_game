@@ -17,6 +17,7 @@
   top: 5vh;
   height: 95vh;
   border: 1px solid red;
+  position: relative;
 }
 
 .text-box {
@@ -35,7 +36,7 @@
   font-family: 'Playfair Display', serif;
 }
 
-.text-box h1:hover {
+.main-header:hover {
   animation: flash 1.3s ease-in;
 }
 
@@ -50,4 +51,19 @@
   75% {
     opacity: 0;
   }
+}
+
+.login-form {
+  margin-top: 50vh;
+}
+
+.login-input {
+  display: block;
+  margin: 3px auto;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.login-input:focus {
+  background-color: red;
 }
