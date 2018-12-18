@@ -1,27 +1,26 @@
 import React from 'react';
 import LandingPage from './components/LandingPage/LandingPage';
+import {connect} from 'react-redux';
 
 const Authenticate = Component =>
   class extends React.Component {
-    constructor(props) {
-      super(props);
+    constructor() {
+      super();
       this.state = {
         loggedIn: false,
       };
     }
-
     componentDidMount() {
-      if (
-        localStorage.getItem('username') &&
-        localStorage.getItem('password')
-      ) {
-        this.setState({loggedIn: true});
-      }
+      console.log('cdm');
     }
-
     render() {
-      return this.state.loggedIn ? <Component /> : <LandingPage />;
+      console.log('authentiacting');
+      return this.state.isLoggedIn ? <Component /> : <LandingPage />;
     }
   };
+
+//const mapStateToProps = state => ({
+//isLoggedIn: state.isLoggedIn,
+//});
 
 export default Authenticate;

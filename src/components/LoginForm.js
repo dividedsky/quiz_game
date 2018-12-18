@@ -26,15 +26,15 @@ class LoginForm extends React.Component {
     if (this.state.image_url) {
       user.image_url = this.state.image_url;
     }
-    console.log('user', user);
-    this.props.registerUser(user);
+    //console.log('user', user);
 
-    //if (this.state.username && this.state.password && this.state.email) {
-    //localStorage.setItem('username', JSON.stringify(this.state.username));
-    //localStorage.setItem('password', JSON.stringify(this.state.password));
-    //localStorage.setItem('email', JSON.stringify(this.state.email));
-    //window.location.reload();
-    //}
+    if (this.state.username && this.state.password && this.state.email) {
+      this.props.registerUser(user);
+      //localStorage.setItem('username', JSON.stringify(this.state.username));
+      //localStorage.setItem('password', JSON.stringify(this.state.password));
+      //localStorage.setItem('email', JSON.stringify(this.state.email));
+      //window.location.reload();
+    }
   };
 
   handleSignIn = e => {

@@ -14,8 +14,11 @@ export const registerUser = user => dispatch => {
   dispatch({type: REGISTERING});
   ax.post('auth/register', user)
     .then(res => {
-      console.log(res);
+      console.log('response:', res);
       dispatch({type: REGISTER_SUCCESS, payload: res});
     })
-    .catch(err => console.log());
+    .catch(err => {
+      console.log('error:', err);
+      dispatch({type: REGISTER_FAILURE, payload: err});
+    });
 };
