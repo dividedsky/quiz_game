@@ -8,6 +8,7 @@ class LoginForm extends React.Component {
       password: '',
       email: '',
       imageUrl: '',
+      register: true,
     };
   }
 
@@ -23,6 +24,15 @@ class LoginForm extends React.Component {
       localStorage.setItem('password', JSON.stringify(this.state.password));
       localStorage.setItem('email', JSON.stringify(this.state.email));
     }
+    window.location.reload();
+  };
+
+  toggleRegister = () => {
+    this.setState(prevState => {
+      return {
+        register: !prevState.register,
+      };
+    });
   };
 
   makeInput = (name, type = name) => {
@@ -41,19 +51,24 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <form
-        className="login-form"
-        onSubmit={this.handleSubmit}
-        autoComplete="off">
-        <h3>Register to Play</h3>
-        {this.makeInput('username', 'text')}
-        {this.makeInput('password')}
-        {this.makeInput('email')}
-        {this.makeInput('imageUrl', 'text')}
-        <button className="btn submit-btn" type="submit">
-          Submit
+      <>
+        <button className="btn" onClick={this.toggleRegister}>
+          register
         </button>
-      </form>
+        <form
+          className="register-form"
+          onSubmit={this.handleSubmit}
+          autoComplete="off">
+          <h3>Register to Play</h3>
+          {this.makeInput('username', 'text')}
+          {this.makeInput('password')}
+          {this.makeInput('email')}
+          {this.makeInput('imageUrl', 'text')}
+          <button className="btn submit-btn" type="submit">
+            Submit
+          </button>
+        </form>
+      </>
     );
   }
 }
