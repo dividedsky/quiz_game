@@ -1,8 +1,13 @@
 .landing {
+  /*background-image: linear-gradient(*/
+  /*to right,*/
+  /*rgba(35, 20, 115, 0.3),*/
+  /*rgba(119, 112, 159, 0.18)*/
+  /*),*/
   background-image: linear-gradient(
       to right,
-      rgba(35, 20, 115, 0.3),
-      rgba(119, 112, 159, 0.18)
+      rgb(56, 0, 0),
+      rgba(34, 181, 52, 0.28)
     ),
     url('../../img/bulb.svg');
   background-size: contain;
@@ -11,7 +16,6 @@
   background-color: blue;
   top: 5vh;
   height: 95vh;
-  margin-top: 10px;
   border: 1px solid red;
 }
 
@@ -28,6 +32,7 @@
   animation-name: flash;
   animation-duration: 1s;
   animation-timing-function: ease-in;
+  font-family: 'Playfair Display', serif;
 }
 
 .text-box h1:hover {
