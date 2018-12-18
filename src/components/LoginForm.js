@@ -9,7 +9,7 @@ class LoginForm extends React.Component {
       username: '',
       password: '',
       email: '',
-      imageUrl: '',
+      image_url: '',
       register: true,
     };
   }
@@ -21,12 +21,20 @@ class LoginForm extends React.Component {
   handleRegister = e => {
     console.log(e);
     e.preventDefault();
-    if (this.state.username && this.state.password && this.state.email) {
-      localStorage.setItem('username', JSON.stringify(this.state.username));
-      localStorage.setItem('password', JSON.stringify(this.state.password));
-      localStorage.setItem('email', JSON.stringify(this.state.email));
-      window.location.reload();
+    const {username, password, email} = this.state;
+    const user = {username, password, email};
+    if (this.state.image_url) {
+      user.image_url = this.state.image_url;
     }
+    console.log('user', user);
+    this.props.registerUser(user);
+
+    //if (this.state.username && this.state.password && this.state.email) {
+    //localStorage.setItem('username', JSON.stringify(this.state.username));
+    //localStorage.setItem('password', JSON.stringify(this.state.password));
+    //localStorage.setItem('email', JSON.stringify(this.state.email));
+    //window.location.reload();
+    //}
   };
 
   handleSignIn = e => {

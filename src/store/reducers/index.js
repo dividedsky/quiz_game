@@ -15,6 +15,13 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case REGISTERING:
       console.log('registering');
+      break;
+    case REGISTER_SUCCESS:
+      console.log('register success', action.payload);
+      break;
+    case REGISTER_FAILURE:
+      console.log('reg failure', action.payload);
+      break;
     default:
       return state;
   }
