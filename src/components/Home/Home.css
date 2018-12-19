@@ -1,0 +1,25 @@
+.home-page {
+  padding-top: 5vh;
+  height: 95vh;
+}
+
+.home-page-bg {
+  background-image: url(../../img/quiz.jpg);
+  height: 100%;
+  background-size: cover;
+  background-position: top;
+  filter: blur(5px) opacity(25%);
+}
+
+.home-page-fg {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: blue;
+  border: 1px solid red;
+}
+
+.home-page-header {
+  font-size: 4.2rem;
+}
