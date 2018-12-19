@@ -6,7 +6,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Quizzes from './components/Quizzes/Quizzes';
 import Quiz from './components/Quiz';
 import {connect} from 'react-redux';
-import UserDashBoard from './components/UserDashboard';
+import HomeContainer from './containers/Home';
 
 //{this.props.isLoggedIn ? <UserDashboard /> : <LandingPage />}
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
           path="/"
           component={props =>
             this.props.isLoggedIn ? (
-              <UserDashBoard />
+              <HomeContainer />
             ) : (
               <LandingPage {...props} />
             )
