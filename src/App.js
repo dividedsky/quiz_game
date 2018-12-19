@@ -6,6 +6,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Quizzes from './components/Quizzes/Quizzes';
 import Quiz from './components/Quiz';
 import {connect} from 'react-redux';
+import UserDashBoard from './components/UserDashboard';
 
 //{this.props.isLoggedIn ? <UserDashboard /> : <LandingPage />}
 class App extends Component {
@@ -14,8 +15,18 @@ class App extends Component {
     return (
       <div className="App">
         <Route path="/" component={NavBar} />
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/quizzes" render={props => <Quizzes {...props} />} />
+        <Route
+          exact
+          path="/"
+          component={props =>
+            this.props.isLoggedIn ? (
+              <UserDashBoard />
+            ) : (
+              <LandingPage {...props} />
+            )
+          }
+        />
+        <Route path="/quizzes" component={Quizzes} />
         <Route path="/quiz/:id" component={Quiz} />
       </div>
     );
