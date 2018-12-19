@@ -49,7 +49,7 @@ export const getQuizzes = () => dispatch => {
   ax.get('/quizzes')
     .then(res => {
       console.log('fetch response:', res);
-      dispatch({type: FETCH_QUIZZES_SUCCESS});
+      dispatch({type: FETCH_QUIZZES_SUCCESS, payload: res.data});
     })
     .catch(err => {
       console.log(err);
