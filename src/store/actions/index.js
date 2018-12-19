@@ -40,6 +40,7 @@ export const logInUser = user => dispatch => {
     })
     .catch(err => {
       console.log('login err:', err);
+      console.log(err.response.message);
       dispatch({type: LOG_IN_FAILURE, payload: err});
     });
 };

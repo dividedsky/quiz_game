@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import {Route, withRouter} from 'react-router-dom';
-//import Authenticate from './Authenticate';
 import NavBar from './components/NavBar/NavBar';
-import UserDashboard from './components/UserDashboard';
 import LandingPage from './components/LandingPage/LandingPage';
 import Quizzes from './components/Quizzes/Quizzes';
 import Quiz from './components/Quiz';
@@ -28,4 +26,9 @@ const mapStateToProps = state => ({
   isLoggedIn: state.user.isLoggedIn,
 });
 
-export default connect(mapStateToProps)(withRouter(App));
+export default withRouter(
+  connect(mapStateToProps)(App),
+); /* withRouter is apparently not the most efficent solution to
+blocked updates. need to read more on this and figure out a better way to get around the problem.
+https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/blocked-updates.md
+*/

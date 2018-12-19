@@ -19,6 +19,7 @@ const initialUserState = {
   isRegistering: false,
   isLoggingIn: false,
   isLoggedIn: false,
+  error: null,
 };
 
 export const userReducer = (state = initialUserState, action) => {
