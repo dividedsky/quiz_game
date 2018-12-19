@@ -5,6 +5,7 @@ import {Route} from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import UserDashboard from './components/UserDashboard';
 import LandingPage from './components/LandingPage/LandingPage';
+import Quizzes from './components/Quizzes';
 import {connect} from 'react-redux';
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
     return (
       <div className="App">
         <Route path="/" component={NavBar} />
+        <Route path="/quizzes" render={props => <Quizzes {...props} />} />
         {this.props.isLoggedIn ? <UserDashboard /> : <LandingPage />}
       </div>
     );

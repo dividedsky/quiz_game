@@ -8,6 +8,10 @@ export const LOGGING_IN = 'LOGGING_IN';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 export const LOG_IN_FAILURE = 'LOG_IN_FAILURE';
 
+export const FETCHING = 'FETCHING';
+export const FETCH_QUIZZES_SUCCESS = 'FETCH_QUIZZES_SUCCESS';
+export const FETCH_QUIZZES_FAILURE = 'FETCH_QUIZZES_FAILURE';
+
 // change axios config to make things simpler
 
 const ax = axios.create({
@@ -37,5 +41,18 @@ export const logInUser = user => dispatch => {
     .catch(err => {
       console.log('login err:', err);
       dispatch({type: LOG_IN_FAILURE, payload: err});
+    });
+};
+
+export const getQuizzes = () => dispatch => {
+  dispatch({type: FETCHING});
+  ax.get('/quizzes')
+    .then(res => {
+      console.log('fetch response:', res);
+      dispatch({type: FETCH_QUIZZES_SUCCESS});
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({type: FETCH_QUIZZES_FAILURE});
     });
 };

@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {registerUser, logInUser} from '../store/actions';
 
 class LoginForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       username: '',
       password: '',
@@ -47,6 +47,7 @@ class LoginForm extends React.Component {
       //localStorage.setItem('username', JSON.stringify(this.state.username));
       //localStorage.setItem('password', JSON.stringify(this.state.password));
       //window.location.reload();
+      this.props.history.push('/quizzes');
     }
   };
 
