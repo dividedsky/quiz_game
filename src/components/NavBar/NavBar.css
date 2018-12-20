@@ -1,7 +1,28 @@
 .main-nav {
   position: fixed;
   height: 5vh;
-  border: 1px solid blue;
   width: 100%;
-  background: #888;
+  z-index: 1;
+  background: #000;
+  padding-top: 10px;
+}
+
+.nav-link {
+  color: white;
+  padding: 0 10px;
+  margin: 10px 10px;
+  font-size: 2.6rem;
+  border: 1px solid blue;
+  border-radius: 100px;
+  background-color: blue;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  transform: rotate(0.5 turn);
+}
+
+.active {
+  color: #7eff20;
+  font-weight: bold;
 }

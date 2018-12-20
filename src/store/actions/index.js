@@ -66,8 +66,6 @@ export const getQuizzes = () => dispatch => {
     });
 };
 
-//GET QUIZ - use that in quiz.js
-
 export const getQuiz = id => dispatch => {
   dispatch({type: FETCHING_QUIZ});
   ax.get(`/quizzes/${id}`)
@@ -89,3 +87,5 @@ export const getQuestions = id => dispatch => {
       console.log(err);
     });
 };
+
+export const getTopics = () => dispatch => {};

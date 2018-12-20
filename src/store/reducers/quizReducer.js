@@ -17,6 +17,7 @@ const initialQuizState = {
   currentQuestions: null,
   fetchingComplete: false,
   error: null,
+  topics: null,
 };
 
 export const quizReducer = (state = initialQuizState, action) => {

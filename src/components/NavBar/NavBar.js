@@ -2,12 +2,19 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 import './NavBar.css';
-const NavBar = () => {
+const NavBar = props => {
   return (
     <div className="main-nav">
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/login">Log In</NavLink>
-      <NavLink to="/quizzes">Quizzes</NavLink>
+      <NavLink exact className="nav-link" to="/">
+        Home
+      </NavLink>
+      <NavLink className="nav-link" to="/login">
+        Log In
+      </NavLink>
+      <NavLink className="nav-link" to="/quizzes">
+        Quizzes
+      </NavLink>
+      {props.location.pathname === '/quizzes' && <select />}
     </div>
   );
 };
