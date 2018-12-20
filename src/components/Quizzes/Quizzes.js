@@ -21,9 +21,10 @@ class Quizzes extends React.Component {
               className="single-quiz"
               key={quiz.id}
               onClick={() => this.props.history.push(`/quiz/${quiz.id}`)}>
-              <h3>{quiz.title}</h3>
-              <p>{quiz.topic}</p>
-              <p>{quiz.author}</p>
+              <h3 className="quiz-title">{quiz.title}</h3>
+              <p className="quiz-topic">{quiz.topic}</p>
+              <p className="quiz-author">{quiz.author}</p>
+              <p className="quiz-description">{quiz.description}</p>
             </div>
           ))}
         </div>

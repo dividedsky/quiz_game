@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import Quiz from '../components/Quiz';
+import Quiz from '../components/Quiz/Quiz';
 import {getQuiz, getQuestions} from '../store/actions';
 
 class QuizContainer extends React.Component {
