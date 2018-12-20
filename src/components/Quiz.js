@@ -1,13 +1,14 @@
 import React from 'react';
+import './Quiz.css';
 
 const Quiz = props => {
+  console.log('quiz component', props);
   return (
-    <>
-      <h3>quiz</h3>
-      <h3>quiz</h3>
-      <h3>quiz</h3>
-      <h3>quiz</h3>
-    </>
+    <div className="quiz">
+      <h3>{props.quiz.title}</h3>
+      <h4>{props.quiz.topic}</h4>
+      <p>{props.description}</p>
+    </div>
   );
 };
 
