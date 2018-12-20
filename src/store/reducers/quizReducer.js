@@ -55,6 +55,21 @@ export const quizReducer = (state = initialQuizState, action) => {
         fetchingComplete: true,
         error: action.payload,
       };
+    case FETCH_QUESTIONS_SUCCESS: {
+      return {
+        ...state,
+        isFetching: false,
+        fetchingComplete: true,
+        currentQuestions: action.payload,
+      };
+    }
+    case FETCH_QUIZ_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        fetchingComplete: true,
+        error: action.payload,
+      };
     default:
       return state;
   }

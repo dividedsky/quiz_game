@@ -18,7 +18,8 @@ class QuizContainer extends React.Component {
     console.log('render', this.props.quiz);
     console.log(this.props.questions);
 
-    if (this.props.quiz) return <Quiz quiz={this.props.quiz} />;
+    if (this.props.quiz && this.props.questions)
+      return <Quiz quiz={this.props.quiz} questions={this.props.questions} />;
     //return <Redirect to="/quizzes" />;
     return <h1>loading</h1>;
   }
