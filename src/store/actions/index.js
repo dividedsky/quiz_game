@@ -12,6 +12,14 @@ export const FETCHING = 'FETCHING';
 export const FETCH_QUIZZES_SUCCESS = 'FETCH_QUIZZES_SUCCESS';
 export const FETCH_QUIZZES_FAILURE = 'FETCH_QUIZZES_FAILURE';
 
+export const FETCHING_QUIZ = 'FETCHING_QUIZ';
+export const FETCH_QUIZ_SUCCESS = 'FETCH_QUIZ_SUCCESS';
+export const FETCH_QUIZ_FAILURE = 'FETCH_QUIZ_FAILURE';
+
+export const FETCHING_QUESTIONS = 'FETCHING_QUESTIONS';
+export const FETCH_QUESTIONS_SUCCESS = 'FETCH_QUESTIONS_SUCCESS';
+export const FETCH_QUESTIONS_FAILURE = 'FETCH_QUESTIONS_FAILURE';
+
 // change axios config to make things simpler
 
 const ax = axios.create({
@@ -55,5 +63,29 @@ export const getQuizzes = () => dispatch => {
     .catch(err => {
       console.log(err);
       dispatch({type: FETCH_QUIZZES_FAILURE});
+    });
+};
+
+//GET QUIZ - use that in quiz.js
+
+export const getQuiz = id => dispatch => {
+  dispatch({type: FETCHING_QUIZ});
+  ax.get(`/quizzes/${id}`)
+    .then(res => {
+      console.log('get quiz', res);
+      dispatch({type: FETCH_QUIZ_SUCCESS, payload: res.data});
+    })
+    .catch(err => console.log());
+};
+
+export const getQuestions = id => dispatch => {
+  dispatch({type: FETCHING_QUESTIONS});
+  ax.get(`quizzes/${id}/questions`)
+    .then(res => {
+      console.log('questions respons:', res);
+      dispatch({type: FETCH_QUESTIONS_SUCCESS, payload: res.data});
+    })
+    .catch(err => {
+      console.log(err);
     });
 };
