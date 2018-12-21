@@ -4,13 +4,16 @@ import {connect} from 'react-redux';
 import {filterQuizzes} from '../../store/actions';
 import './NavBar.css';
 import userIcon from '../../img/user_icon.svg';
+import plusSign from '../../img/plus_sign.svg';
 
 const NavBar = props => {
   console.log(props);
 
   return (
     <div className="main-nav">
-      <div className="main-nav-left" />
+      <div className="main-nav-left">
+        <img className="create-icon" src={plusSign} alt="Create a Quiz" />
+      </div>
       <div className="main-nav-center">
         <NavLink exact className="nav-link" to="/">
           Home

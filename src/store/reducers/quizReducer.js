@@ -12,6 +12,9 @@ import {
   FETCHING_TOPICS_SUCCESS,
   FILTER_QUIZZES,
   CLEAR_QUIZ_FILTER,
+  ADDING_QUIZ,
+  ADD_QUIZ_SUCCESS,
+  ADD_QUIZ_FAILURE,
 } from '../actions';
 
 const initialQuizState = {

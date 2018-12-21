@@ -7,6 +7,7 @@ import Quizzes from './components/Quizzes/Quizzes';
 import QuizContainer from './containers/Quiz';
 import {connect} from 'react-redux';
 import HomeContainer from './containers/Home';
+import QuizForm from './components/QuizForm/QuizForm';
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
         />
         <Route path="/quizzes" component={Quizzes} />
         <Route path="/quiz/:id" component={QuizContainer} />
+        <Route path="/create" component={QuizForm} />
       </div>
     );
   }

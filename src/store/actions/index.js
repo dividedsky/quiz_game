@@ -25,8 +25,12 @@ export const FETCHING_TOPICS_SUCCESS = 'FETCHING_TOPICS_SUCCESS';
 
 export const FILTER_QUIZZES = 'FILTER_QUIZZES';
 export const CLEAR_QUIZ_FILTER = 'CLEAR_QUIZ_FILTER';
-// change axios config to make things simpler
 
+export const ADDING_QUIZ = 'ADDING_QUIZ';
+export const ADD_QUIZ_SUCCESS = 'ADD_QUIZ_SUCCESS';
+export const ADD_QUIZ_FAILURE = 'ADD_QUIZ_FAILURE';
+
+// change axios config to make things simpler
 const ax = axios.create({
   baseURL: 'https://lambda-study-app.herokuapp.com/api/',
 });
@@ -111,3 +115,5 @@ export const filterQuizzes = topic => dispatch => {
     dispatch({type: FILTER_QUIZZES, payload: topic});
   }
 };
+
+export const addQuiz = quiz => dispatch => {};
