@@ -11,6 +11,7 @@ import {
   FETCHING_TOPICS,
   FETCHING_TOPICS_SUCCESS,
   FILTER_QUIZZES,
+  CLEAR_QUIZ_FILTER,
 } from '../actions';
 
 const initialQuizState = {
@@ -22,7 +23,8 @@ const initialQuizState = {
   error: null,
   topics: null,
   currentTopic: null,
-  filteredQuizzes: null,
+  filteredQuizzes: [],
+  filterActive: false,
 };
 
 export const quizReducer = (state = initialQuizState, action) => {
@@ -90,6 +92,14 @@ export const quizReducer = (state = initialQuizState, action) => {
         ...state,
         currentTopic: topic,
         filteredQuizzes: state.quizzes.filter(q => q.topic === topic),
+        filterActive: true,
+      };
+    }
+    case CLEAR_QUIZ_FILTER: {
+      return {
+        ...state,
+        filteredQuizzes: [], //not necessary with flag?
+        filterActive: false,
       };
     }
     default:

@@ -21,6 +21,7 @@ const NavBar = props => {
       {props.location.pathname === '/quizzes' &&
         props.topics && (
           <select onChange={e => props.filterQuizzes(e.target.value)}>
+            <option value="None">None</option>
             {props.topics.map(topic => (
               <option value={topic.name}>{topic.name}</option>
             ))}

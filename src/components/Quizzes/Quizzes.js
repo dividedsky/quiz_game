@@ -13,10 +13,9 @@ class Quizzes extends React.Component {
     if (!this.props.quizzes) {
       return <h3>loading</h3>;
     }
-    const quizzes =
-      this.props.filteredQuizzes && this.props.filteredQuizzes.length
-        ? this.props.filteredQuizzes
-        : this.props.quizzes;
+    const quizzes = this.props.filterActive
+      ? this.props.filteredQuizzes
+      : this.props.quizzes;
     return (
       <div className="quiz-list-wrapper">
         <h2>Quizzes</h2>
@@ -40,6 +39,7 @@ class Quizzes extends React.Component {
 const mapStateToProps = state => ({
   quizzes: state.quiz.quizzes,
   filteredQuizzes: state.quiz.filteredQuizzes,
+  filterActive: state.quiz.filterActive,
 });
 export default connect(
   mapStateToProps,

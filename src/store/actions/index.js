@@ -24,7 +24,7 @@ export const FETCHING_TOPICS = 'FETCHING_TOPICS';
 export const FETCHING_TOPICS_SUCCESS = 'FETCHING_TOPICS_SUCCESS';
 
 export const FILTER_QUIZZES = 'FILTER_QUIZZES';
-
+export const CLEAR_QUIZ_FILTER = 'CLEAR_QUIZ_FILTER';
 // change axios config to make things simpler
 
 const ax = axios.create({
@@ -105,5 +105,9 @@ export const getTopics = () => dispatch => {
 
 export const filterQuizzes = topic => dispatch => {
   console.log('topic', topic);
-  dispatch({type: FILTER_QUIZZES, payload: topic});
+  if (topic === 'None') {
+    dispatch({type: CLEAR_QUIZ_FILTER});
+  } else {
+    dispatch({type: FILTER_QUIZZES, payload: topic});
+  }
 };
