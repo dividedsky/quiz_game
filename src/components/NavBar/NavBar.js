@@ -3,30 +3,41 @@ import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {filterQuizzes} from '../../store/actions';
 import './NavBar.css';
+import userIcon from '../../img/user_icon.svg';
 
 const NavBar = props => {
   console.log(props);
 
   return (
     <div className="main-nav">
-      <NavLink exact className="nav-link" to="/">
-        Home
-      </NavLink>
-      <NavLink className="nav-link" to="/login">
-        Log In
-      </NavLink>
-      <NavLink className="nav-link" to="/quizzes">
-        Quizzes
-      </NavLink>
-      {props.location.pathname === '/quizzes' &&
-        props.topics && (
-          <select onChange={e => props.filterQuizzes(e.target.value)}>
-            <option value="None">None</option>
-            {props.topics.map(topic => (
-              <option value={topic.name}>{topic.name}</option>
-            ))}
-          </select>
-        )}
+      <div className="main-nav-left" />
+      <div className="main-nav-center">
+        <NavLink exact className="nav-link" to="/">
+          Home
+        </NavLink>
+        <NavLink className="nav-link" to="/login">
+          Log In
+        </NavLink>
+        <NavLink className="nav-link" to="/quizzes">
+          Quizzes
+        </NavLink>
+        {props.location.pathname === '/quizzes' &&
+          props.topics && (
+            <select
+              className="topic-select"
+              onChange={e => props.filterQuizzes(e.target.value)}>
+              <option value="None">Show All</option>
+              {props.topics.map((topic, i) => (
+                <option key={i} value={topic.name}>
+                  {topic.name}
+                </option>
+              ))}
+            </select>
+          )}
+      </div>
+      <div className="main-nav-right">
+        <img className="user-icon" src={userIcon} alt="" />
+      </div>
     </div>
   );
 };

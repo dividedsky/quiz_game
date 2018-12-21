@@ -5,13 +5,23 @@
   z-index: 1;
   background: #000;
   padding-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.main-nav-center {
+  color: white;
+  margin: 10px 0;
+  font-size: 2.6rem;
+  padding: 10px;
 }
 
 .nav-link {
   color: white;
   padding: 0 10px;
-  margin: 10px 10px;
-  font-size: 2.6rem;
+  margin: 0 10px;
+  /*font-size: 2.6rem;*/
   border: 1px solid blue;
   border-radius: 100px;
   background-color: blue;
@@ -25,4 +35,21 @@
 .active {
   color: #7eff20;
   font-weight: bold;
+}
+
+.user-icon {
+  background-color: blue;
+  height: 40px;
+  border-radius: 200px;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.topic-select {
+  background-color: blue;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid yellow;
+  vertical-align: top;
+  font-size: 1.6rem;
 }

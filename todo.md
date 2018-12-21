@@ -1,0 +1,2 @@
+- [] hover effects for navlinks
+- [] navbar media queries
