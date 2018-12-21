@@ -8,6 +8,9 @@ import {
   FETCHING_QUESTIONS,
   FETCH_QUESTIONS_SUCCESS,
   FETCH_QUESTIONS_FAILURE,
+  FETCHING_TOPICS,
+  FETCHING_TOPICS_SUCCESS,
+  FILTER_QUIZZES,
 } from '../actions';
 
 const initialQuizState = {
@@ -18,6 +21,8 @@ const initialQuizState = {
   fetchingComplete: false,
   error: null,
   topics: null,
+  currentTopic: null,
+  filteredQuizzes: null,
 };
 
 export const quizReducer = (state = initialQuizState, action) => {
@@ -64,13 +69,29 @@ export const quizReducer = (state = initialQuizState, action) => {
         currentQuestions: action.payload,
       };
     }
-    case FETCH_QUIZ_FAILURE:
+    case FETCH_QUESTIONS_FAILURE:
       return {
         ...state,
         isFetching: false,
         fetchingComplete: true,
         error: action.payload,
       };
+    case FETCHING_TOPICS_SUCCESS: {
+      return {
+        ...state,
+        isFetching: false,
+        fetchingComplete: true,
+        topics: action.payload,
+      };
+    }
+    case FILTER_QUIZZES: {
+      const topic = action.payload;
+      return {
+        ...state,
+        currentTopic: topic,
+        filteredQuizzes: state.quizzes.filter(q => q.topic === topic),
+      };
+    }
     default:
       return state;
   }

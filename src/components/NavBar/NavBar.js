@@ -1,8 +1,12 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-
+import {connect} from 'react-redux';
+import {filterQuizzes} from '../../store/actions';
 import './NavBar.css';
+
 const NavBar = props => {
+  console.log(props);
+
   return (
     <div className="main-nav">
       <NavLink exact className="nav-link" to="/">
@@ -14,9 +18,23 @@ const NavBar = props => {
       <NavLink className="nav-link" to="/quizzes">
         Quizzes
       </NavLink>
-      {props.location.pathname === '/quizzes' && <select />}
+      {props.location.pathname === '/quizzes' &&
+        props.topics && (
+          <select onChange={e => props.filterQuizzes(e.target.value)}>
+            {props.topics.map(topic => (
+              <option value={topic.name}>{topic.name}</option>
+            ))}
+          </select>
+        )}
     </div>
   );
 };
 
-export default NavBar;
+const mapStateToProps = state => ({
+  topics: state.quiz.topics,
+});
+
+export default connect(
+  mapStateToProps,
+  {filterQuizzes},
+)(NavBar);

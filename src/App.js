@@ -8,9 +8,7 @@ import QuizContainer from './containers/Quiz';
 import {connect} from 'react-redux';
 import HomeContainer from './containers/Home';
 
-//{this.props.isLoggedIn ? <UserDashboard /> : <LandingPage />}
 class App extends Component {
-  // why can't i just put isLoggedIn here and skip authenticate?
   render() {
     return (
       <div className="App">

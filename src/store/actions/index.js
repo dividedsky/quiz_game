@@ -20,6 +20,11 @@ export const FETCHING_QUESTIONS = 'FETCHING_QUESTIONS';
 export const FETCH_QUESTIONS_SUCCESS = 'FETCH_QUESTIONS_SUCCESS';
 export const FETCH_QUESTIONS_FAILURE = 'FETCH_QUESTIONS_FAILURE';
 
+export const FETCHING_TOPICS = 'FETCHING_TOPICS';
+export const FETCHING_TOPICS_SUCCESS = 'FETCHING_TOPICS_SUCCESS';
+
+export const FILTER_QUIZZES = 'FILTER_QUIZZES';
+
 // change axios config to make things simpler
 
 const ax = axios.create({
@@ -88,4 +93,17 @@ export const getQuestions = id => dispatch => {
     });
 };
 
-export const getTopics = () => dispatch => {};
+export const getTopics = () => dispatch => {
+  dispatch({type: FETCHING_TOPICS});
+  ax.get('/quizzes/topics')
+    .then(res => {
+      console.log(res);
+      dispatch({type: FETCHING_TOPICS_SUCCESS, payload: res.data});
+    })
+    .catch(err => console.log());
+};
+
+export const filterQuizzes = topic => dispatch => {
+  console.log('topic', topic);
+  dispatch({type: FILTER_QUIZZES, payload: topic});
+};
