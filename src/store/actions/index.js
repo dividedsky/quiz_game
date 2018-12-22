@@ -40,6 +40,14 @@ const auth = axios.create({
   baseURL: 'https://lambda-study-app.herokuapp.com/api/',
 });
 
+function addAuthorization() {
+  if (localStorage.getItem('quiz_token')) {
+    ax.defaults.headers.common['Authorization'] = localStorage.getItem(
+      'quiz_token',
+    );
+  }
+}
+
 export const registerUser = user => dispatch => {
   dispatch({type: REGISTERING});
   ax.post('auth/register', user)
@@ -89,11 +97,7 @@ export const getQuizzes = () => dispatch => {
 };
 
 export const getQuiz = id => dispatch => {
-  if (localStorage.getItem('quiz_token')) {
-    ax.defaults.headers.common['Authorization'] = localStorage.getItem(
-      'quiz_token',
-    );
-  }
+  addAuthorization();
   dispatch({type: FETCHING_QUIZ});
   ax.get(`/quizzes/${id}`)
     .then(res => {
@@ -136,11 +140,12 @@ export const filterQuizzes = topic => dispatch => {
 
 export const addQuiz = quiz => dispatch => {
   console.log('adding quiz:', quiz);
+  addAuthorization();
   dispatch({type: ADDING_QUIZ});
-  auth
-    .post('/quizzes', quiz)
+  ax.post('/quizzes', quiz)
     .then(res => {
       console.log('add quiz res:', res);
+      dispatch({type: ADD_QUIZ_SUCCESS});
     })
     .catch(err => {
       console.log('add quizz err:', err);
