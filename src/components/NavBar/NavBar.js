@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {filterQuizzes} from '../../store/actions';
+import {filterQuizzes, logOutUser} from '../../store/actions';
 import './NavBar.css';
 import userIcon from '../../img/user_icon.svg';
 import plusSign from '../../img/plus_sign.svg';
@@ -44,7 +44,12 @@ const NavBar = props => {
           )}
       </div>
       <div className="main-nav-right">
-        <img className="user-icon clickable" src={userIcon} alt="" />
+        <img
+          className="user-icon clickable"
+          src={userIcon}
+          alt=""
+          onClick={() => props.logOutUser()}
+        />
       </div>
     </div>
   );
@@ -56,5 +61,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {filterQuizzes},
+  {filterQuizzes, logOutUser},
 )(NavBar);

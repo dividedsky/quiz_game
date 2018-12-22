@@ -7,6 +7,7 @@ export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 export const LOGGING_IN = 'LOGGING_IN';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 export const LOG_IN_FAILURE = 'LOG_IN_FAILURE';
+export const LOGGING_OUT = 'LOGGING_OUT';
 
 export const FETCHING = 'FETCHING';
 export const FETCH_QUIZZES_SUCCESS = 'FETCH_QUIZZES_SUCCESS';
@@ -58,11 +59,8 @@ export const logInUser = user => dispatch => {
     .then(res => {
       console.log('login res:', res);
       console.log(auth);
-
-      //auth.defaults.headers.Authorization = 'Bearer ' + res.data.token;
-      auth.defaults.headers.common['Authorization'] = res.data.token;
-      //console.log('auth', auth.defaults);
-
+      //auth.defaults.headers.common['Authorization'] = res.data.token; // better to use local storage?
+      //localStorage.setItem('quiz_token', res.data.token);
       dispatch({type: LOG_IN_SUCCESS, payload: res});
     })
     .catch(err => {
@@ -70,6 +68,11 @@ export const logInUser = user => dispatch => {
       console.log(err.response.message);
       dispatch({type: LOG_IN_FAILURE, payload: err});
     });
+};
+
+export const logOutUser = () => dispatch => {
+  delete ax.defaults.headers.common['Authorization'];
+  dispatch({type: LOGGING_OUT});
 };
 
 export const getQuizzes = () => dispatch => {
@@ -86,6 +89,11 @@ export const getQuizzes = () => dispatch => {
 };
 
 export const getQuiz = id => dispatch => {
+  if (localStorage.getItem('quiz_token')) {
+    ax.defaults.headers.common['Authorization'] = localStorage.getItem(
+      'quiz_token',
+    );
+  }
   dispatch({type: FETCHING_QUIZ});
   ax.get(`/quizzes/${id}`)
     .then(res => {

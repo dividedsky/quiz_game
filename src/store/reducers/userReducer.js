@@ -5,6 +5,7 @@ import {
   LOGGING_IN,
   LOG_IN_SUCCESS,
   LOG_IN_FAILURE,
+  LOGGING_OUT,
 } from '../actions';
 
 const initialUserState = {
@@ -53,6 +54,7 @@ export const userReducer = (state = initialUserState, action) => {
         isLoggingIn: true,
       };
     case LOG_IN_SUCCESS:
+      localStorage.setItem('quiz_token', action.payload.data.token);
       return {
         ...state,
         isLoggingIn: false,
@@ -70,6 +72,21 @@ export const userReducer = (state = initialUserState, action) => {
         ...state,
         isLoggingIn: false,
         error: action.payload,
+      };
+    case LOGGING_OUT:
+      localStorage.removeItem('quiz_token');
+      return {
+        ...state,
+        isLoggedIn: false,
+        token: null,
+        user: {
+          ...state.user,
+          username: '',
+          id: '',
+          password: '',
+          imageUrl: '',
+          email: '',
+        },
       };
     default:
       return state;
