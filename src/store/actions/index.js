@@ -35,6 +35,10 @@ const ax = axios.create({
   baseURL: 'https://lambda-study-app.herokuapp.com/api/',
 });
 
+const auth = axios.create({
+  baseURL: 'https://lambda-study-app.herokuapp.com/api/',
+});
+
 export const registerUser = user => dispatch => {
   dispatch({type: REGISTERING});
   ax.post('auth/register', user)
@@ -53,6 +57,12 @@ export const logInUser = user => dispatch => {
   ax.post('auth/login', user)
     .then(res => {
       console.log('login res:', res);
+      console.log(auth);
+
+      //auth.defaults.headers.Authorization = 'Bearer ' + res.data.token;
+      auth.defaults.headers.common['Authorization'] = res.data.token;
+      //console.log('auth', auth.defaults);
+
       dispatch({type: LOG_IN_SUCCESS, payload: res});
     })
     .catch(err => {
@@ -116,4 +126,16 @@ export const filterQuizzes = topic => dispatch => {
   }
 };
 
-export const addQuiz = quiz => dispatch => {};
+export const addQuiz = quiz => dispatch => {
+  console.log('adding quiz:', quiz);
+  dispatch({type: ADDING_QUIZ});
+  auth
+    .post('/quizzes', quiz)
+    .then(res => {
+      console.log('add quiz res:', res);
+    })
+    .catch(err => {
+      console.log('add quizz err:', err);
+      dispatch({type: ADD_QUIZ_FAILURE, payload: err});
+    });
+};

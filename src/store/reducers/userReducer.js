@@ -9,7 +9,7 @@ import {
 
 const initialUserState = {
   user: {
-    username: 'Towels',
+    username: '',
     password: '',
     email: '',
     imageUrl: '',
@@ -18,7 +18,7 @@ const initialUserState = {
   token: null,
   isRegistering: false,
   isLoggingIn: false,
-  isLoggedIn: true, // just so i don't have to keep logging in
+  isLoggedIn: false, // just so i don't have to keep logging in
   error: null,
 };
 

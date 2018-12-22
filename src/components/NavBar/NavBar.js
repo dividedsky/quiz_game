@@ -12,7 +12,12 @@ const NavBar = props => {
   return (
     <div className="main-nav">
       <div className="main-nav-left">
-        <img className="create-icon" src={plusSign} alt="Create a Quiz" />
+        <img
+          className="create-icon clickable"
+          src={plusSign}
+          alt="Create a Quiz"
+          onClick={() => props.history.push('/create')}
+        />
       </div>
       <div className="main-nav-center">
         <NavLink exact className="nav-link" to="/">
@@ -39,7 +44,7 @@ const NavBar = props => {
           )}
       </div>
       <div className="main-nav-right">
-        <img className="user-icon" src={userIcon} alt="" />
+        <img className="user-icon clickable" src={userIcon} alt="" />
       </div>
     </div>
   );

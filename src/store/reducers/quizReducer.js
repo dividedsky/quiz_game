@@ -28,6 +28,7 @@ const initialQuizState = {
   currentTopic: null,
   filteredQuizzes: [],
   filterActive: false,
+  addingQuiz: false,
 };
 
 export const quizReducer = (state = initialQuizState, action) => {
@@ -103,6 +104,25 @@ export const quizReducer = (state = initialQuizState, action) => {
         ...state,
         filteredQuizzes: [], //not necessary with flag?
         filterActive: false,
+      };
+    }
+    case ADDING_QUIZ: {
+      return {
+        ...state,
+        addingQuiz: true,
+      };
+    }
+    case ADD_QUIZ_SUCCESS: {
+      return {
+        ...state,
+        addingQuiz: false,
+      };
+    }
+    case ADD_QUIZ_FAILURE: {
+      return {
+        ...state,
+        addingQuiz: false,
+        error: action.payload,
       };
     }
     default:
