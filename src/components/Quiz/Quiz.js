@@ -8,6 +8,9 @@ const Quiz = props => {
       <h3 className="quiz-title">{props.quiz.title}</h3>
       <h4 className="quiz-topic">{props.quiz.topic}</h4>
       <p className="quiz-description">{props.description}</p>
+      {props.isUserQuiz && (
+        <button onClick={() => props.deleteQuiz()}>delete!</button>
+      )}
       <div className="quiz-body">
         <ol>
           {props.questions.map((q, i) => (

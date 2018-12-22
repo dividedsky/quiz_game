@@ -152,3 +152,12 @@ export const addQuiz = quiz => dispatch => {
       dispatch({type: ADD_QUIZ_FAILURE, payload: err});
     });
 };
+
+export const deleteQuiz = id => dispatch => {
+  console.log('delete quiz');
+
+  addAuthorization();
+  ax.delete(`/quizzes/${id}`)
+    .then(res => console.log(res))
+    .catch(err => console.log());
+};
