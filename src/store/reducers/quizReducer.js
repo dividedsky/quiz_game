@@ -15,6 +15,8 @@ import {
   ADDING_QUIZ,
   ADD_QUIZ_SUCCESS,
   ADD_QUIZ_FAILURE,
+  EDIT_MODE_ON,
+  EDIT_MODE_OFF,
 } from '../actions';
 
 const initialQuizState = {
@@ -29,6 +31,7 @@ const initialQuizState = {
   filteredQuizzes: [],
   filterActive: false,
   addingQuiz: false,
+  editMode: false,
 };
 
 export const quizReducer = (state = initialQuizState, action) => {
@@ -123,6 +126,18 @@ export const quizReducer = (state = initialQuizState, action) => {
         ...state,
         addingQuiz: false,
         error: action.payload,
+      };
+    }
+    case EDIT_MODE_ON: {
+      return {
+        ...state,
+        editMode: true,
+      };
+    }
+    case EDIT_MODE_OFF: {
+      return {
+        ...state,
+        editMode: false,
       };
     }
     default:

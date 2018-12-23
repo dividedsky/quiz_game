@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import {Route, withRouter} from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import LandingPage from './components/LandingPage/LandingPage';
 import Quizzes from './components/Quizzes/Quizzes';
 import QuizContainer from './containers/Quiz';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import HomeContainer from './containers/Home';
 import QuizForm from './components/QuizForm/QuizForm';
 
@@ -27,6 +27,7 @@ class App extends Component {
         />
         <Route path="/quizzes" component={Quizzes} />
         <Route path="/quiz/:id" component={QuizContainer} />
+        <Route path="/quiz/edit/:id" component={QuizForm} />
         <Route path="/create" component={QuizForm} />
       </div>
     );

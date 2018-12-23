@@ -31,6 +31,9 @@ export const ADDING_QUIZ = 'ADDING_QUIZ';
 export const ADD_QUIZ_SUCCESS = 'ADD_QUIZ_SUCCESS';
 export const ADD_QUIZ_FAILURE = 'ADD_QUIZ_FAILURE';
 
+export const EDIT_MODE_ON = 'EDIT_MODE_ON';
+export const EDIT_MODE_OFF = 'EDIT_MODE_OFF';
+
 // change axios config to make things simpler
 const ax = axios.create({
   baseURL: 'https://lambda-study-app.herokuapp.com/api/',
@@ -49,70 +52,70 @@ function addAuthorization() {
 }
 
 export const registerUser = user => dispatch => {
-  dispatch({type: REGISTERING});
+  dispatch({ type: REGISTERING });
   ax.post('auth/register', user)
     .then(res => {
       console.log('response:', res);
-      dispatch({type: REGISTER_SUCCESS, payload: res});
+      dispatch({ type: REGISTER_SUCCESS, payload: res });
     })
     .catch(err => {
       console.log('error:', err);
-      dispatch({type: REGISTER_FAILURE, payload: err});
+      dispatch({ type: REGISTER_FAILURE, payload: err });
     });
 };
 
 export const logInUser = user => dispatch => {
-  dispatch({type: LOGGING_IN});
+  dispatch({ type: LOGGING_IN });
   ax.post('auth/login', user)
     .then(res => {
       console.log('login res:', res);
       console.log(auth);
       //auth.defaults.headers.common['Authorization'] = res.data.token; // better to use local storage?
       //localStorage.setItem('quiz_token', res.data.token);
-      dispatch({type: LOG_IN_SUCCESS, payload: res});
+      dispatch({ type: LOG_IN_SUCCESS, payload: res });
     })
     .catch(err => {
       console.log('login err:', err);
       console.log(err.response.message);
-      dispatch({type: LOG_IN_FAILURE, payload: err});
+      dispatch({ type: LOG_IN_FAILURE, payload: err });
     });
 };
 
 export const logOutUser = () => dispatch => {
   delete ax.defaults.headers.common['Authorization'];
-  dispatch({type: LOGGING_OUT});
+  dispatch({ type: LOGGING_OUT });
 };
 
 export const getQuizzes = () => dispatch => {
-  dispatch({type: FETCHING});
+  dispatch({ type: FETCHING });
   ax.get('/quizzes')
     .then(res => {
       console.log('fetch response:', res);
-      dispatch({type: FETCH_QUIZZES_SUCCESS, payload: res.data});
+      dispatch({ type: FETCH_QUIZZES_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);
-      dispatch({type: FETCH_QUIZZES_FAILURE});
+      dispatch({ type: FETCH_QUIZZES_FAILURE });
     });
 };
 
 export const getQuiz = id => dispatch => {
   addAuthorization();
-  dispatch({type: FETCHING_QUIZ});
+  dispatch({ type: FETCHING_QUIZ });
   ax.get(`/quizzes/${id}`)
     .then(res => {
       console.log('get quiz', res);
-      dispatch({type: FETCH_QUIZ_SUCCESS, payload: res.data});
+      dispatch({ type: FETCH_QUIZ_SUCCESS, payload: res.data });
     })
     .catch(err => console.log());
 };
 
 export const getQuestions = id => dispatch => {
-  dispatch({type: FETCHING_QUESTIONS});
+  dispatch({ type: FETCHING_QUESTIONS });
   ax.get(`quizzes/${id}/questions`)
     .then(res => {
       console.log('questions respons:', res);
-      dispatch({type: FETCH_QUESTIONS_SUCCESS, payload: res.data});
+      dispatch({ type: FETCH_QUESTIONS_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);
@@ -120,11 +123,11 @@ export const getQuestions = id => dispatch => {
 };
 
 export const getTopics = () => dispatch => {
-  dispatch({type: FETCHING_TOPICS});
+  dispatch({ type: FETCHING_TOPICS });
   ax.get('/quizzes/topics')
     .then(res => {
       console.log(res);
-      dispatch({type: FETCHING_TOPICS_SUCCESS, payload: res.data});
+      dispatch({ type: FETCHING_TOPICS_SUCCESS, payload: res.data });
     })
     .catch(err => console.log());
 };
@@ -132,24 +135,24 @@ export const getTopics = () => dispatch => {
 export const filterQuizzes = topic => dispatch => {
   console.log('topic', topic);
   if (topic === 'None') {
-    dispatch({type: CLEAR_QUIZ_FILTER});
+    dispatch({ type: CLEAR_QUIZ_FILTER });
   } else {
-    dispatch({type: FILTER_QUIZZES, payload: topic});
+    dispatch({ type: FILTER_QUIZZES, payload: topic });
   }
 };
 
 export const addQuiz = quiz => dispatch => {
   console.log('adding quiz:', quiz);
   addAuthorization();
-  dispatch({type: ADDING_QUIZ});
+  dispatch({ type: ADDING_QUIZ });
   ax.post('/quizzes', quiz)
     .then(res => {
       console.log('add quiz res:', res);
-      dispatch({type: ADD_QUIZ_SUCCESS});
+      dispatch({ type: ADD_QUIZ_SUCCESS });
     })
     .catch(err => {
       console.log('add quizz err:', err);
-      dispatch({type: ADD_QUIZ_FAILURE, payload: err});
+      dispatch({ type: ADD_QUIZ_FAILURE, payload: err });
     });
 };
 
@@ -161,3 +164,11 @@ export const deleteQuiz = id => dispatch => {
     .then(res => console.log(res))
     .catch(err => console.log());
 };
+
+export const setEditModeOn = () => ({
+  type: EDIT_MODE_ON,
+});
+
+export const setEditModeOff = () => ({
+  type: EDIT_MODE_OFF,
+});
