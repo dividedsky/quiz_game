@@ -1,7 +1,7 @@
 import React from 'react';
 import './QuizForm.css';
-import { addQuiz, setEditModeOn, setEditModeOff } from '../../store/actions';
-import { connect } from 'react-redux';
+import {addQuiz, setEditModeOn, setEditModeOff} from '../../store/actions';
+import {connect} from 'react-redux';
 
 // add quiz just takes a title and a topic
 class QuizForm extends React.Component {
@@ -17,16 +17,18 @@ class QuizForm extends React.Component {
     console.log(this.props.location.pathname);
     if (this.props.location.pathname === '/create') {
       this.props.setEditModeOff();
-    } else this.props.setEditModeOn();
+    } else {
+      this.props.setEditModeOn();
+    }
     console.log(this.props.editMode);
   }
 
-  clearstate = () => {
-    this.setState({ title: '', topic: '' });
+  clearState = () => {
+    this.setState({title: '', topic: ''});
   };
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   };
 
   handleSubmit = e => {
@@ -51,7 +53,11 @@ class QuizForm extends React.Component {
   };
   render() {
     if (this.props.editMode) {
-      return <h1>edit mode</h1>;
+      return (
+        <div className="quiz-form">
+          <h1>edit mode</h1>
+        </div>
+      );
     }
     return (
       <div className="quiz-form">
@@ -72,5 +78,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addQuiz, setEditModeOn, setEditModeOff },
+  {addQuiz, setEditModeOn, setEditModeOff},
 )(QuizForm);

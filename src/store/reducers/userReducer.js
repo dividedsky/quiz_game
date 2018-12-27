@@ -23,6 +23,20 @@ const initialUserState = {
   error: null,
 };
 
+// check localStorage for user data
+
+if (localStorage.getItem('quiz_token')) {
+  initialUserState.token = localStorage.getItem('quiz_token');
+}
+
+if (localStorage.getItem('id')) {
+  initialUserState.user.id = localStorage.getItem('id');
+}
+
+if (localStorage.getItem('username')) {
+  initialUserState.user.username = localStorage.getItem('username');
+}
+
 export const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
     case REGISTERING:
@@ -54,7 +68,11 @@ export const userReducer = (state = initialUserState, action) => {
         isLoggingIn: true,
       };
     case LOG_IN_SUCCESS:
+      // set the token in local storage for auth use
       localStorage.setItem('quiz_token', action.payload.data.token);
+      // also set the username, email, and logged in status
+      localStorage.setItem('username', action.payload.data.user.username);
+      localStorage.setItem('id', action.payload.data.user.id);
       return {
         ...state,
         isLoggingIn: false,
@@ -74,7 +92,7 @@ export const userReducer = (state = initialUserState, action) => {
         error: action.payload,
       };
     case LOGGING_OUT:
-      localStorage.removeItem('quiz_token');
+      localStorage.clear();
       return {
         ...state,
         isLoggedIn: false,
