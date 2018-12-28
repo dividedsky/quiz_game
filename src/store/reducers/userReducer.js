@@ -73,6 +73,7 @@ export const userReducer = (state = initialUserState, action) => {
       // also set the username, email, and logged in status
       localStorage.setItem('username', action.payload.data.user.username);
       localStorage.setItem('id', action.payload.data.user.id);
+
       return {
         ...state,
         isLoggingIn: false,
