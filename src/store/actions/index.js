@@ -34,6 +34,8 @@ export const ADD_QUIZ_FAILURE = 'ADD_QUIZ_FAILURE';
 export const EDIT_MODE_ON = 'EDIT_MODE_ON';
 export const EDIT_MODE_OFF = 'EDIT_MODE_OFF';
 
+export const EDITING_QUIZ = 'EDITING_QUIZ';
+
 // change axios config to make things simpler
 const ax = axios.create({
   baseURL: 'https://lambda-study-app.herokuapp.com/api/',
@@ -173,3 +175,12 @@ export const setEditModeOn = () => ({
 export const setEditModeOff = () => ({
   type: EDIT_MODE_OFF,
 });
+
+export const editQuiz = id => dispatch => {
+  console.log('edit quiz');
+  addAuthorization();
+  dispatch({type: EDITING_QUIZ});
+  ax.patch(`/quizzes/${id}/edit`)
+    .then(res => console.log(res))
+    .catch(err => console.log());
+};

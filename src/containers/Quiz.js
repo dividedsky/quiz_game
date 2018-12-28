@@ -2,9 +2,13 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Quiz from '../components/Quiz/Quiz';
-import {getQuiz, getQuestions, deleteQuiz} from '../store/actions';
+import {getQuiz, getQuestions, deleteQuiz, editQuiz} from '../store/actions';
 
 class QuizContainer extends React.Component {
+  state = {
+    showModal: false,
+  };
+
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.getQuiz(id);
@@ -13,6 +17,14 @@ class QuizContainer extends React.Component {
 
   handleDelete = () => {
     this.props.deleteQuiz(this.props.quiz.id);
+  };
+
+  handleEdit = () => {
+    this.setState(prevState => {
+      return {
+        showModal: !prevState.showModal,
+      };
+    });
   };
 
   render() {
@@ -26,6 +38,8 @@ class QuizContainer extends React.Component {
           questions={this.props.questions}
           deleteQuiz={this.handleDelete}
           isUserQuiz={this.props.quiz.author.id === this.props.userId}
+          editQuiz={this.handleEdit}
+          showModal={this.state.showModal}
         />
       );
     }
@@ -43,5 +57,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {getQuiz, getQuestions, deleteQuiz},
+  {getQuiz, getQuestions, deleteQuiz, editQuiz},
 )(QuizContainer);

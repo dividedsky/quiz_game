@@ -17,6 +17,7 @@ import {
   ADD_QUIZ_FAILURE,
   EDIT_MODE_ON,
   EDIT_MODE_OFF,
+  EDITING_QUIZ,
 } from '../actions';
 
 const initialQuizState = {
@@ -32,6 +33,7 @@ const initialQuizState = {
   filterActive: false,
   addingQuiz: false,
   editMode: false,
+  isEditing: false,
 };
 
 export const quizReducer = (state = initialQuizState, action) => {
@@ -138,6 +140,12 @@ export const quizReducer = (state = initialQuizState, action) => {
       return {
         ...state,
         editMode: false,
+      };
+    }
+    case EDITING_QUIZ: {
+      return {
+        ...state,
+        isEditing: true,
       };
     }
     default:
