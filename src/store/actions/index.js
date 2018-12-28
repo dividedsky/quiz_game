@@ -176,11 +176,11 @@ export const setEditModeOff = () => ({
   type: EDIT_MODE_OFF,
 });
 
-export const editQuiz = id => dispatch => {
+export const editQuiz = (id, title = null, topic = null) => dispatch => {
   console.log('edit quiz');
   addAuthorization();
   dispatch({type: EDITING_QUIZ});
-  ax.patch(`/quizzes/${id}/edit`)
+  ax.patch(`/quizzes/${id}/edit`, {title, topic})
     .then(res => console.log(res))
     .catch(err => console.log());
 };

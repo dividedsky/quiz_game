@@ -18,7 +18,12 @@
   transform: translate(-50%, -50%);
   border-radius: 5px;
   opacity: 1;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .quiz {
   position: relative;
   top: 10vh;

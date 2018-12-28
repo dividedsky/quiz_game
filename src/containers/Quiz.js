@@ -19,12 +19,22 @@ class QuizContainer extends React.Component {
     this.props.deleteQuiz(this.props.quiz.id);
   };
 
-  handleEdit = () => {
+  toggleEdit = () => {
     this.setState(prevState => {
       return {
         showModal: !prevState.showModal,
       };
     });
+  };
+
+  handleEdit = e => {
+    e.preventDefault();
+    const title = e.target.title.value;
+    const topic = e.target.topic.value;
+    console.log(topic, title);
+    this.props.editQuiz(this.props.quiz.id, title, topic);
+    this.props.getQuiz(this.props.match.params.id);
+    this.props.history.push(`/quizzes`);
   };
 
   render() {
@@ -38,8 +48,9 @@ class QuizContainer extends React.Component {
           questions={this.props.questions}
           deleteQuiz={this.handleDelete}
           isUserQuiz={this.props.quiz.author.id === this.props.userId}
-          editQuiz={this.handleEdit}
+          toggleEdit={this.toggleEdit}
           showModal={this.state.showModal}
+          editQuiz={this.handleEdit}
         />
       );
     }

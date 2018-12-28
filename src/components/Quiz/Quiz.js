@@ -6,7 +6,13 @@ const Quiz = props => {
   console.log('quiz component', props);
   return (
     <>
-      {props.showModal && <EditModal />}
+      {props.showModal && (
+        <EditModal
+          title={props.quiz.title}
+          topic={props.quiz.topic}
+          editQuiz={props.editQuiz}
+        />
+      )}
       <div className="quiz-sidebar">
         <h3 className="quiz-title">{props.quiz.title}</h3>
         <h4 className="quiz-author">by {props.quiz.author.username}</h4>
@@ -15,7 +21,7 @@ const Quiz = props => {
         {props.isUserQuiz && (
           <div>
             <button onClick={() => props.deleteQuiz()}>delete!</button>
-            <button onClick={() => props.editQuiz()}>edit!</button>
+            <button onClick={() => props.toggleEdit()}>edit!</button>
           </div>
         )}
       </div>
