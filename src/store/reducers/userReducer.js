@@ -30,11 +30,12 @@ if (localStorage.getItem('quiz_token')) {
 }
 
 if (localStorage.getItem('id')) {
-  initialUserState.user.id = localStorage.getItem('id');
+  initialUserState.user.id = JSON.parse(localStorage.getItem('id'));
 }
 
 if (localStorage.getItem('username')) {
   initialUserState.user.username = localStorage.getItem('username');
+  initialUserState.isLoggedIn = true;
 }
 
 export const userReducer = (state = initialUserState, action) => {

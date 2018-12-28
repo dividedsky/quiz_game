@@ -4,7 +4,7 @@ import {addQuiz, setEditModeOn, setEditModeOff} from '../../store/actions';
 import {connect} from 'react-redux';
 
 // add quiz just takes a title and a topic
-class QuizForm extends React.Component {
+class AddQuizForm extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -79,4 +79,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {addQuiz, setEditModeOn, setEditModeOff},
-)(QuizForm);
+)(AddQuizForm);

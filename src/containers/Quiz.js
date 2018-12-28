@@ -12,17 +12,13 @@ class QuizContainer extends React.Component {
   }
 
   handleDelete = () => {
-    //if (this.props.userId === quiz.author.id) {
-    //console.log('match delete');
-    //this.props.deleteQuiz(quiz.id);
-    //} else console.log('no match!');
     this.props.deleteQuiz(this.props.quiz.id);
   };
 
   render() {
     if (this.props.quiz && this.props.questions) {
-      console.log(this.props.quiz);
-      console.log(this.props.quiz.author.id, this.props.userId);
+      //console.log(this.props.quiz);
+      //console.log(this.props.quiz.author.id, this.props.userId);
 
       return (
         <Quiz
