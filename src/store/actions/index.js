@@ -35,6 +35,8 @@ export const EDIT_MODE_ON = 'EDIT_MODE_ON';
 export const EDIT_MODE_OFF = 'EDIT_MODE_OFF';
 
 export const EDITING_QUIZ = 'EDITING_QUIZ';
+export const EDIT_QUIZ_SUCCESS = 'EDIT_QUIZ_SUCCESS';
+export const EDIT_QUIZ_FAILURE = 'EDIT_QUIZ_FAILURE';
 
 // change axios config to make things simpler
 const ax = axios.create({
@@ -163,6 +165,12 @@ export const editQuiz = (id, title = null, topic = null) => dispatch => {
   addAuthorization();
   dispatch({type: EDITING_QUIZ});
   ax.patch(`/quizzes/${id}/edit`, {title, topic})
-    .then(res => console.log(res))
-    .catch(err => console.log());
+    .then(res => {
+      console.log(res);
+      dispatch({type: EDIT_QUIZ_SUCCESS});
+    })
+    .catch(err => {
+      console.log();
+      dispatch({type: EDIT_QUIZ_FAILURE, payload: err});
+    });
 };

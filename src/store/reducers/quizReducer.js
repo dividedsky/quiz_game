@@ -18,6 +18,8 @@ import {
   EDIT_MODE_ON,
   EDIT_MODE_OFF,
   EDITING_QUIZ,
+  EDIT_QUIZ_SUCCESS,
+  EDIT_QUIZ_FAILURE,
 } from '../actions';
 
 const initialQuizState = {
@@ -105,15 +107,14 @@ export const quizReducer = (state = initialQuizState, action) => {
         isFetching: true,
         fetchingComplete: false,
       };
-    case FETCHING_TOPICS_SUCCESS: {
+    case FETCHING_TOPICS_SUCCESS:
       return {
         ...state,
         isFetching: false,
         fetchingComplete: true,
         topics: action.payload,
       };
-    }
-    case FILTER_QUIZZES: {
+    case FILTER_QUIZZES:
       const topic = action.payload;
       return {
         ...state,
@@ -121,51 +122,54 @@ export const quizReducer = (state = initialQuizState, action) => {
         filteredQuizzes: state.quizzes.filter(q => q.topic === topic),
         filterActive: true,
       };
-    }
-    case CLEAR_QUIZ_FILTER: {
+    case CLEAR_QUIZ_FILTER:
       return {
         ...state,
         filteredQuizzes: [], //not necessary with flag?
         filterActive: false,
       };
-    }
-    case ADDING_QUIZ: {
+    case ADDING_QUIZ:
       return {
         ...state,
         addingQuiz: true,
       };
-    }
-    case ADD_QUIZ_SUCCESS: {
+    case ADD_QUIZ_SUCCESS:
       return {
         ...state,
         addingQuiz: false,
       };
-    }
-    case ADD_QUIZ_FAILURE: {
+    case ADD_QUIZ_FAILURE:
       return {
         ...state,
         addingQuiz: false,
         error: action.payload,
       };
-    }
-    case EDIT_MODE_ON: {
+    case EDIT_MODE_ON:
       return {
         ...state,
         editMode: true,
       };
-    }
-    case EDIT_MODE_OFF: {
+    case EDIT_MODE_OFF:
       return {
         ...state,
         editMode: false,
       };
-    }
-    case EDITING_QUIZ: {
+    case EDITING_QUIZ:
       return {
         ...state,
         isEditing: true,
       };
-    }
+    case EDIT_QUIZ_SUCCESS:
+      return {
+        ...state,
+        isEditing: false,
+      };
+    case EDIT_QUIZ_FAILURE:
+      return {
+        ...state,
+        isEditing: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

@@ -9,6 +9,13 @@ class Quizzes extends React.Component {
     this.props.getTopics();
   }
 
+  //cdu to check if editing is complete
+  componentDidUpdate(prevProps) {
+    if (this.props.isEditing !== prevProps.isEditing) {
+      this.props.getQuizzes();
+    }
+  }
+
   render() {
     if (!this.props.quizzes) {
       return <h3>loading</h3>;
@@ -40,6 +47,7 @@ const mapStateToProps = state => ({
   quizzes: state.quiz.quizzes,
   filteredQuizzes: state.quiz.filteredQuizzes,
   filterActive: state.quiz.filterActive,
+  isEditing: state.quiz.isEditing,
 });
 export default connect(
   mapStateToProps,

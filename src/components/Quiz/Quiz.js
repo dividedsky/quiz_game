@@ -3,7 +3,6 @@ import EditModal from './EditModal';
 import './Quiz.css';
 
 const Quiz = props => {
-  console.log('quiz component', props);
   return (
     <>
       {props.showModal && (
