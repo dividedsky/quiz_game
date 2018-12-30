@@ -33,23 +33,24 @@ if (localStorage.getItem('id')) {
   initialUserState.user.id = JSON.parse(localStorage.getItem('id'));
 }
 
+if (localStorage.getItem('isLoggedIn')) {
+  initialUserState.isLoggedIn = true;
+}
+
 if (localStorage.getItem('username')) {
   initialUserState.user.username = localStorage.getItem('username');
-  initialUserState.isLoggedIn = true;
 }
 
 export const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
     case REGISTERING:
-      //console.log('registering');
       return {...state, isRegistering: true};
     case REGISTER_SUCCESS:
-      console.log('register success', action.payload);
       return {
         ...state,
         isRegistering: false,
         isLoggedIn: true,
-        token: action.payload.data.token,
+        token: action.payload.data.token, // I don't think we need this anymore since token is in localstorage
         user: {
           ...state.user,
           id: action.payload.data.user.id,
@@ -57,7 +58,6 @@ export const userReducer = (state = initialUserState, action) => {
         },
       };
     case REGISTER_FAILURE:
-      console.log('reg failure', action.payload);
       return {
         ...state,
         isRegistering: false,
@@ -74,6 +74,7 @@ export const userReducer = (state = initialUserState, action) => {
       // also set the username, email, and logged in status
       localStorage.setItem('username', action.payload.data.user.username);
       localStorage.setItem('id', action.payload.data.user.id);
+      localStorage.setItem('isLoggedIn', true);
 
       return {
         ...state,

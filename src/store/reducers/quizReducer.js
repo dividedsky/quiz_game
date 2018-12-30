@@ -1,5 +1,5 @@
 import {
-  FETCHING,
+  FETCHING_QUIZZES,
   FETCH_QUIZZES_SUCCESS,
   FETCH_QUIZZES_FAILURE,
   FETCHING_QUIZ,
@@ -38,7 +38,7 @@ const initialQuizState = {
 
 export const quizReducer = (state = initialQuizState, action) => {
   switch (action.type) {
-    case FETCHING:
+    case FETCHING_QUIZZES:
       return {
         ...state,
         isFetching: true,
@@ -58,6 +58,12 @@ export const quizReducer = (state = initialQuizState, action) => {
         fetchingComplete: true,
         error: action.payload,
       };
+    case FETCHING_QUIZ:
+      return {
+        ...state,
+        isFetching: true,
+        fetchingComplete: false,
+      };
     case FETCH_QUIZ_SUCCESS:
       return {
         ...state,
@@ -71,6 +77,12 @@ export const quizReducer = (state = initialQuizState, action) => {
         isFetching: false,
         fetchingComplete: true,
         error: action.payload,
+      };
+    case FETCHING_QUESTIONS:
+      return {
+        ...state,
+        isFetching: true,
+        fetchingComplete: false,
       };
     case FETCH_QUESTIONS_SUCCESS: {
       return {
@@ -86,6 +98,12 @@ export const quizReducer = (state = initialQuizState, action) => {
         isFetching: false,
         fetchingComplete: true,
         error: action.payload,
+      };
+    case FETCHING_TOPICS:
+      return {
+        ...state,
+        isFetching: true,
+        fetchingComplete: false,
       };
     case FETCHING_TOPICS_SUCCESS: {
       return {

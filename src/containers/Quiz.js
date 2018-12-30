@@ -1,5 +1,4 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Quiz from '../components/Quiz/Quiz';
 import {getQuiz, getQuestions, deleteQuiz, editQuiz} from '../store/actions';
@@ -31,7 +30,6 @@ class QuizContainer extends React.Component {
     e.preventDefault();
     const title = e.target.title.value;
     const topic = e.target.topic.value;
-    console.log(topic, title);
     this.props.editQuiz(this.props.quiz.id, title, topic);
     this.props.getQuiz(this.props.match.params.id);
     this.props.history.push(`/quizzes`);
@@ -39,9 +37,6 @@ class QuizContainer extends React.Component {
 
   render() {
     if (this.props.quiz && this.props.questions) {
-      //console.log(this.props.quiz);
-      //console.log(this.props.quiz.author.id, this.props.userId);
-
       return (
         <Quiz
           quiz={this.props.quiz}
