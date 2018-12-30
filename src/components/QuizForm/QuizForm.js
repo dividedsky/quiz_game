@@ -37,6 +37,7 @@ class AddQuizForm extends React.Component {
     console.log(this.state);
     this.props.addQuiz(this.state);
     this.clearState();
+    this.props.history.push(`/quizzes/${this.props.currentQuiz}`);
   };
 
   makeInput = (name, type = name) => {
@@ -74,6 +75,7 @@ class AddQuizForm extends React.Component {
 
 const mapStateToProps = state => ({
   editMode: state.quiz.editMode,
+  currentQuiz: state.quiz.currentQuiz,
 });
 
 export default connect(

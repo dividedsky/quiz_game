@@ -138,7 +138,7 @@ export const addQuiz = quiz => dispatch => {
   dispatch({type: ADDING_QUIZ});
   ax.post('/quizzes', quiz)
     .then(res => {
-      dispatch({type: ADD_QUIZ_SUCCESS});
+      dispatch({type: ADD_QUIZ_SUCCESS, payload: res.data});
     })
     .catch(err => {
       dispatch({type: ADD_QUIZ_FAILURE, payload: err});

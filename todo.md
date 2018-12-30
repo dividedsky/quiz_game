@@ -3,8 +3,8 @@
 - [] move selector under quizzes heading
 - [] on quiz addition go to quizzes or edit quiz
 - [x] save user status in local storage so users don't have to log in 10000000 times
-- [] edit quiz success, edit quiz failure, turn off EDITING_QUIZ
-- [] refresh quizzes if EDITING_QUIZ changest  
+- [x] edit quiz success, edit quiz failure, turn off EDITING_QUIZ
+- [x] refresh quizzes if EDITING_QUIZ changest  
 - [] display user quizzes on home page
 - [] sort quizzes by user 
 

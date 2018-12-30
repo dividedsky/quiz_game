@@ -137,6 +137,7 @@ export const quizReducer = (state = initialQuizState, action) => {
       return {
         ...state,
         addingQuiz: false,
+        currentQuiz: action.payload[0],
       };
     case ADD_QUIZ_FAILURE:
       return {
